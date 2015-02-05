@@ -1,0 +1,10 @@
+.DS_Store
+*.[a|o]
+*.pyc
+build/*
+xcuserdata
+*.xcworkspace
+!default.xcworkspace
+project.xcworkspace
+Pods
+Podfile.lock
