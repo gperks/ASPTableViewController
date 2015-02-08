@@ -84,7 +84,7 @@
     // 1. Perform a selector
     // 2. Push a storyboard's view controller
     // 3. Perform a segue
-    NSString *selector = cellInfo[@"selector"];
+    NSString *selector = cellInfo[@"action"];
     NSString *segue = cellInfo[@"segue"];
     NSString *storyboardName = cellInfo[@"storyboard"];
     NSString *viewControllerId = cellInfo[@"viewControllerId"];
