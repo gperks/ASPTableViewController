@@ -6,12 +6,14 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                    A UITableViewController subclass that:
                    
-                   * moves cells to their own controller classes
+                   * moves cell logic to their own controller classes
                    * makes the tree's data source data-driven
+                   * can load the table structure from JSON
 
-                   This is especially useful when
-                   * the collection structure is variable, or unknown at build time
-                   * you have shared a cell style across several collection views.
+                   This is especially useful when:
+
+                   * the data structure is variable, or unknown at build time
+                   * you have a shared cell style across several table views.
                    DESC
 
   s.homepage     = "https://github.com/gperks/ASPTableViewController"
