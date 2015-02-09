@@ -12,5 +12,6 @@
 @property (nonatomic, strong) NSURL *jsonDefinitionURL;
 
 -(void)registerClass:(Class)cellClass forCellType:(NSString *)identifier;
+-(void)registerNib:(UINib*)nib forCellType:(NSString *)identifier ofClass:(Class)cellClass;
 
 @end
