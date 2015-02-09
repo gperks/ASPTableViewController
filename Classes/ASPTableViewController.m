@@ -165,25 +165,17 @@
     CGFloat height = 44;
     Class class = self.rowClasses[rowDefinition[@"type"]];
 
+    // Ask the cell's class how tall a row needs to be
+    // to display the given row definition.
+    // We have to ask the class, as the table view might
+    // not yet have instantiated any actual cells for us to ask.
     SEL heightSelector = NSSelectorFromString(@"heightForRowDefinition:inViewController:");
-
 
     if (class && [class respondsToSelector:heightSelector]) {
 
-        NSNumber *heightNumber;
-
-        // 2 ways to invoke..
-        // 1:
         IMP imp = [class methodForSelector:heightSelector];
-        NSNumber* (*func)(id, SEL, NSMutableDictionary*, UIViewController*) = (void *)imp;
-        heightNumber = func(class, heightSelector, rowDefinition, self);
-
-//        // 2:
-//        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[NSMethodSignature methodSignatureForSelector:heightSelector]];
-//        [invocation invokeWithTarget:class];
-//        [invocation getReturnValue:&heightNumber];
-
-        height = [heightNumber doubleValue];
+        CGFloat (*func)(id, SEL, NSMutableDictionary*, UIViewController*) = (void *)imp;
+        height = func(class, heightSelector, rowDefinition, self);
     }
 
     return height;
@@ -197,6 +189,16 @@
 -(void)registerClass:(Class)cellClass forCellType:(NSString *)identifier
 {
     self.rowClasses[identifier] = cellClass;
+    [self.tableView registerClass:cellClass forCellReuseIdentifier:identifier];
+}
+
+// Rows must register their classes with us independently from the table view's
+// registration, as we need to call class methods on them before the table view
+// instatiates them.
+-(void)registerNib:(UINib*)nib forCellType:(NSString *)identifier ofClass:(Class)cellClass
+{
+    self.rowClasses[identifier] = cellClass;
+    [self.tableView registerNib:nib forCellReuseIdentifier:identifier];
 }
 
 

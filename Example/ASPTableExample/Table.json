@@ -1,0 +1,24 @@
+[
+    {
+		"info" : "These are the rows in first section",
+        "rows": [
+            {
+                "type": "TextCell",
+                "accessoryImage": "ASP.png",
+                "text": "Hello, World",
+            },
+            {
+                "type": "TextCell",
+                "accessoryImage": "ASP.png",
+                "text": "This table comes from JSON.",
+            },
+            {
+                "type": "TextCell",
+                "text": "You can build the table at runtime too, with arrays and dictionaries.",
+                "someData" : "Use any attributes you like",
+				"moreData" : "to configure your cell"
+            }
+	
+        ]
+    }
+]

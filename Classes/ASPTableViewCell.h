@@ -14,6 +14,8 @@
 // Subclasses should implement this method.
 +(void)registerCellForTableViewController:(ASPTableViewController*)tableViewController;
 
+// Subclasses will want to override this method, most likely calling super to get
+// some automatic cell configuration.
 -(void) configureInViewController:(UITableViewController*)viewController fromRowDefinition:(NSMutableDictionary*)rowDefinition;
 
 @end
