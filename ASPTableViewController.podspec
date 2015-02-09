@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ASPTableViewController"
-  s.version      = "1.0"
+  s.version      = "1.0.1"
   s.summary      = "A UITableViewController subclass that moves cells to their own controller classes, and makes the tree's data source data-driven."
   s.description  = <<-DESC
                    A UITableViewController subclass that:
