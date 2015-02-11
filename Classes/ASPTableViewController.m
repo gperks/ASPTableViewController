@@ -90,10 +90,28 @@
     NSString *viewControllerId = cellInfo[@"viewControllerId"];
 
     if (selector) {
-        SEL sel = NSSelectorFromString(selector);
-        IMP imp = [self methodForSelector:sel];
-        void (*func)(id, SEL, NSMutableDictionary*) = (void *)imp;
-        func(self, sel, cellInfo);
+        // We're going to be passing a parameter, ensure the action selector ends with a colon.
+        NSString *selectorWithParam;
+        if (! [selector hasSuffix:@":"]) {
+            selectorWithParam = [selector stringByAppendingString:@":"];
+        }
+
+        // Try version with a parameter first.
+        SEL selWithParam;
+        selWithParam = NSSelectorFromString(selectorWithParam);
+        if (selWithParam && [self respondsToSelector:selWithParam]) {
+            // Call selector with a param
+            IMP imp = [self methodForSelector:selWithParam];
+            void (*func)(id, SEL, NSMutableDictionary*) = (void *)imp;
+            func(self, selWithParam, cellInfo);
+        }
+        else {
+            // Call selector without a param
+            SEL sel = NSSelectorFromString(selector);
+            IMP imp = [self methodForSelector:sel];
+            void (*func)(id, SEL) = (void *)imp;
+            func(self, sel);
+        }
     }
     else if (storyboardName) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
