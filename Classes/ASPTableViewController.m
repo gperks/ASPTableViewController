@@ -74,6 +74,21 @@
     return cellInfo;
 }
 
+-(NSIndexPath*) indexPathForRowWithKey:(NSString*)key andValue:(NSString*)value {
+    NSInteger sectionIndex = 0;
+    for (NSMutableDictionary *section in self.sections) {
+        NSMutableArray *cells = section[@"rows"];
+        NSInteger row = 0;
+        for (NSMutableDictionary *cellInfo in cells) {
+            if ([cellInfo[key] isEqualToString:value]) {
+                return [NSIndexPath indexPathForRow:row inSection:sectionIndex];
+            }
+            row++;
+        }
+        sectionIndex++;
+    }
+    return nil;
+}
 
 #pragma mark - Table view delegate
 

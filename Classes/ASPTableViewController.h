@@ -12,6 +12,9 @@
 @property (nonatomic, strong) NSURL *jsonDefinitionURL;
 @property (nonatomic, strong) NSMutableArray *sections;
 
+-(NSIndexPath*) indexPathForRowWithKey:(NSString*)key andValue:(NSString*)value;
+-(NSMutableDictionary*)cellInfoFromIndexPath:(NSIndexPath*)indexPath;
+
 -(void)registerClass:(Class)cellClass forCellType:(NSString *)identifier;
 -(void)registerNib:(UINib*)nib forCellType:(NSString *)identifier ofClass:(Class)cellClass;
 
