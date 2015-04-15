@@ -10,6 +10,7 @@
 @interface ASPTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSURL *jsonDefinitionURL;
+@property (nonatomic, strong) NSMutableArray *sections;
 
 -(void)registerClass:(Class)cellClass forCellType:(NSString *)identifier;
 -(void)registerNib:(UINib*)nib forCellType:(NSString *)identifier ofClass:(Class)cellClass;

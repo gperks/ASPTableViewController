@@ -19,7 +19,6 @@
 
 
 @interface ASPTableViewController ()
-@property (nonatomic, strong) NSMutableArray *sections;
 @property (nonatomic, strong) NSMutableDictionary *rowClasses;
 @end
 
